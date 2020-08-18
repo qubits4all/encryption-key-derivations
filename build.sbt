@@ -11,3 +11,6 @@ libraryDependencies += "org.bouncycastle" % "bcprov-jdk15on" % "1.66"
 libraryDependencies += "commons-codec" % "commons-codec" % "1.14"
 // https://mvnrepository.com/artifact/org.apache.commons/commons-crypto
 libraryDependencies += "org.apache.commons" % "commons-crypto" % "1.0.0"
+
+// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
+libraryDependencies += "com.google.code.findbugs" % "jsr305" % "3.0.2"

@@ -21,8 +21,10 @@ class ClientSideEncryptionContext(keyGenerationSecret: SensitiveString) extends 
     }
 
     /*
-     * TODO: Use HKDF (HMAC-based Key Derivation Function) to generate the actual base
-     *   pseudo-random key (PRK) from the Argon2-produced PRK.
+     * TODO: Use HKDF's (HMAC-based Key Derivation Function) Extract function to generate the
+     *   actual base pseudo-random key (PRK) from the Argon2-produced PRK. The former takes a
+     *   the high-entropy output of Argon2(password, salt) and mixes it in such a wasy as to
+     *   give a uniformly-distributed high entropy base PRK.
      */
     private def deriveBasePRK(passphrase: SensitiveString): DestroyableKey = {
         val argon2Generator = new Argon2BytesGenerator()
@@ -36,8 +38,8 @@ class ClientSideEncryptionContext(keyGenerationSecret: SensitiveString) extends 
     }
 
     /*
-     * TODO: Use HKDF to generate other derived keys by name, using the provided 'keyName'
-     *   as associated-data, using the base PRK produced by deriveBasePRK().
+     * TODO: Use HKDF's Expand function to generate other derived keys by name, using the
+     *   provided 'keyName' as associated-data, using the base PRK produced by deriveBasePRK().
      */
     private def generateKeyByName(keyName: String): DestroyableKey = {
         ???
