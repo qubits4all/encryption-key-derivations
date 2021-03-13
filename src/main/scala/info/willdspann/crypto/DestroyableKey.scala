@@ -18,3 +18,13 @@ class DestroyableAesKey(keyBytes: Array[Byte]) extends DestroyableKey(keyBytes) 
     override def getAlgorithm: String = "AES"
     override def getFormat: String = null
 }
+
+class DestroyableHmacKey(keyBytes: Array[Byte]) extends DestroyableKey(keyBytes) {
+    override def getAlgorithm: String = "HMAC"
+    override def getFormat: String = null
+}
+
+class DestroyableTotpKey(keyBytes: Array[Byte]) extends DestroyableKey(keyBytes) {
+    override def getAlgorithm: String = "TOTP"
+    override def getFormat: String = null
+}

@@ -1,12 +1,19 @@
 package info.willdspann.crypto.util
 
 import java.security.SecureRandom
+import java.util
 
 import javax.annotation.concurrent.ThreadSafe
 import javax.security.auth.Destroyable
 
 case class SensitiveBytes(bytes: Array[Byte]) extends Destroyable {
     @volatile private var destroyed = false
+
+    def copyOf(): SensitiveBytes = {
+        SensitiveBytes(
+            util.Arrays.copyOf(bytes, bytes.length)
+        )
+    }
 
     override def destroy(): Unit = {
         SensitiveDataUtils.clearBytes(bytes)
